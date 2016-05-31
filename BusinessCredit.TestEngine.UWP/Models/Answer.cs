@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace BusinessCredit.TestEngine.Domain
 {
-    public class Question
+    public class Answer
     {
-        public int QuestionID { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public QuestionContentType ContentType { get; set; }
+        public int AnswerID { get; set; }
+
         public string TextContent { get; set; }
         public string ImageUrl { get; set; }
         public string AudioUrl { get; set; }
         public string VideoUrl { get; set; }
         public string HtmlContent { get; set; }
 
-        public ICollection<Answer> Answers { get; set; }
+        public AnswerContentType ContentType { get; set; }
+
+        public bool IsCorrect { get; set; }
     }
 
-    public enum QuestionContentType
+    public enum AnswerContentType
     {
         Text,
         Picture,

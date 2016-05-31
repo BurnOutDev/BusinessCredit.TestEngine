@@ -8,6 +8,12 @@ namespace BusinessCredit.TestEngine.Domain
 {
     public class Question
     {
+        public Question()
+        {
+            if (Answers == null)
+                Answers = new List<Answer>();
+        }
+
         public int QuestionID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

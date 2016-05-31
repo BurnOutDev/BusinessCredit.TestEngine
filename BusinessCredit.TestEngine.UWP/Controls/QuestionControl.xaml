@@ -15,20 +15,24 @@
             <RowDefinition Height="0.70*"></RowDefinition>
             <RowDefinition Height="0.20*"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Viewbox x:Name="viewBoxTitle" Grid.Row="0">
             <TextBlock x:Name="textBlockTitle" 
                        TextWrapping="Wrap" 
                        Text="TextBlock"
                        />
         </Viewbox>
-        
+
         <Viewbox x:Name="viewBoxContent" Grid.Row="1">
-            
+
         </Viewbox>
-        
+
         <Viewbox x:Name="viewBoxAnswers" Grid.Row="2">
-            
+            <RelativePanel>
+                <StackPanel Orientation="Horizontal">
+
+                </StackPanel>
+            </RelativePanel>
         </Viewbox>
     </Grid>
 </UserControl>
