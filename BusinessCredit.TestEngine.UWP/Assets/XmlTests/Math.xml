@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<objs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Objects>
+    <QuestionObject>
+      <Question>რას   უდრის 4.1x10-2?</Question>
+      <Answer1>0.41</Answer1>
+      <Answer2>0.041</Answer2>
+      <Answer3>410</Answer3>
+      <Answer4>41</Answer4>
+      <CorrectAnswerIndex>2</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>რომელია უდიდესი რიცხვი?</Question>
+      <Answer1>1/4</Answer1>
+      <Answer2>3/7</Answer2>
+      <Answer3>1/3</Answer3>
+      <Answer4>2/5</Answer4>
+      <CorrectAnswerIndex>2</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>ორი რიცხვიდან ერთი წესიერი წილადია, მეორე კი - არაწესიერი. რომელი მათგანია 0-თან უფრო ახლოს?</Question>
+      <Answer1>წესიერი</Answer1>
+      <Answer2>არაწესიერი </Answer2>
+      <Answer3>ორივე ერთნაირიამანძლითაადაშორებული</Answer3>
+      <Answer4>პასუხი არ არსებობს</Answer4>
+      <CorrectAnswerIndex>1</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>თემომ კედლის ¾ შეღება გუშინ, ხოლო კედლის 25 % კი დღეს. კედლის რამდენი პროცენტი შეღება თემომ ამ ორ დღეში? </Question>
+      <Answer1>25%</Answer1>
+      <Answer2>50%</Answer2>
+      <Answer3>75%</Answer3>
+      <Answer4>100%</Answer4>
+      <CorrectAnswerIndex>4</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>საწყისი  რიცხვი 10%-ით გაზარდეს.  შედეგად მიღებული  რიცხვი 10%-ით შეამცირეს. საბოლოოდ მიღებული რიცხვი:</Question>
+      <Answer1>A.	მეტია საწყის რიცხვზე;</Answer1>
+      <Answer2>ტოლია საწყისი რიცხვის;</Answer2>
+      <Answer3>ნაკლებია საწყის რიცხვზე;</Answer3>
+      <Answer4>ცალსახა პასუხი არ არსებობს </Answer4>
+      <CorrectAnswerIndex>3</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>A რიცხვი B რიცხვის 40%-ს შეადგენს. B რიცხვი A რიცხვის რამდენ პროცენტს შეადგენს?</Question>
+      <Answer1>80%</Answer1>
+      <Answer2>120%</Answer2>
+      <Answer3>160%</Answer3>
+      <Answer4>250%</Answer4>
+      <CorrectAnswerIndex>4</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>მოცემული რიცხვი 3-ჯერ გაიზარდა.რამდენიპროცენტით გაიზარდა იგი?</Question>
+      <Answer1>100%-ით</Answer1>
+      <Answer2>200%-ით</Answer2>
+      <Answer3>300%-ით</Answer3>
+      <Answer4>D.	პასუხი დამოკიდებულია  მოცემული  რიცხვის  სიდიდეზე</Answer4>
+      <CorrectAnswerIndex>2</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>. რა არის იმის  ალბათობა, რომ 2-დან 11-ის ჩათვლით რიცხვებიდან შემთხვევით შერჩეული რიცხვი 12-ის გამყოფი  იქნება?</Question>
+      <Answer1>0.2</Answer1>
+      <Answer2>0.4</Answer2>
+      <Answer3>0.6</Answer3>
+      <Answer4>0.8</Answer4>
+      <CorrectAnswerIndex>2</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>ორი კამათლით  თამაშიშას რას უდრის იმის ალბათობა, რომ გამოსული  რიცხვების ჯამი 7-ის ტოლი იქნება?</Question>
+      <Answer1>1/4</Answer1>
+      <Answer2>1/5</Answer2>
+      <Answer3>1/6</Answer3>
+      <Answer4>1/7</Answer4>
+      <CorrectAnswerIndex>3</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>რამდენით  გაიზრდება ორნიშნა რიცხვი, თუ  მის ჩანაწერს  მარცხნიდან მივუწერთ 4-ს?</Question>
+      <Answer1>4-ით</Answer1>
+      <Answer2>40-ით</Answer2>
+      <Answer3>100-ით</Answer3>
+      <Answer4>400-ით</Answer4>
+      <CorrectAnswerIndex>4</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>ავტომობილის გამყიდველი მანქანას  ყიდდა საწყის ფასზე 10%-ით ნაკლებ  ფასად. რა  არის ამ  ავტომობილის  საწყისი ფასი, თუ თქვენ $9900 გადაიხადეთ მისი შეძენისას?</Question>
+      <Answer1>10 000 </Answer1>
+      <Answer2>10 500</Answer2>
+      <Answer3>11 000 </Answer3>
+      <Answer4>11 500</Answer4>
+      <CorrectAnswerIndex>3</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>მართკუთხედის  პერიმეტრი 28 სანტიმეტრია.  მისი ერთ-ერთი  გვერდის  სიგრძე 5 სანტიმეტრია. გამოთვალეთ მართკუთხედის  ფართობი.</Question>
+      <Answer1>6 სმ2</Answer1>
+      <Answer2>28 სმ2</Answer2>
+      <Answer3>45 სმ2</Answer3>
+      <Answer4>120 სმ2</Answer4>
+      <CorrectAnswerIndex>3</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>ნამრავლის 1*2*3*...17*18 ბოლო სამი ციფრია:</Question>
+      <Answer1>001</Answer1>
+      <Answer2>010</Answer2>
+      <Answer3>100</Answer3>
+      <Answer4>000</Answer4>
+      <CorrectAnswerIndex>4</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>მაღაზიაში სხვადასხვა ღირებულების კომპიუტერების საშუალო ფასი 1000 ლარია. ქვემოთ ჩამოთვლილი წინადადებებიდან რომელია აუცილებლად  ჭეშმარიტი?</Question>
+      <Answer1>A.	კომპიუტერთაგან ერთი მაინც ღირს  ზუსტად 1000 ლარი.</Answer1>
+      <Answer2>B.	გასაყიდი კომპიუტერების ფასები მერყეობს 500 ლარიდან 1500 ლარამდე.</Answer2>
+      <Answer3>C.	გასაყიდი კომპიუტერების ნახევარი ღირს 1000 ლარზე  ნაკლები, ხოლო მეორე ნახევრის ფასი 1000 ლარზე მეტია.</Answer3>
+      <Answer4>D.	კომპიუტერთაგან ერთი მაინც ღირს 1000 ლარზე ნაკლები.</Answer4>
+      <CorrectAnswerIndex>4</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>როდესაც გიორგი ახორცილებს საერთაშორისო ზარს, ის იხდის 75 თეთრს პირველი წუთისთვის და 40 თეთრს ყოველი მომდევნო  წუთისთვის. ბოლო ზარის განხორცილების შემდეგ მას დაერიცხა 11.15 ლარი. რა ხანგრძლივობის იყო სატელეფონო ზარი?</Question>
+      <Answer1>26 წთ</Answer1>
+      <Answer2>27წთ</Answer2>
+      <Answer3>28წთ</Answer3>
+      <Answer4>29წთ</Answer4>
+      <CorrectAnswerIndex>1</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>კომპანიაში 300 კაციმუშაობს. დიაგრამაზე აღნიშნულია სხვადასხვა სფეროში დასაქმებულთა რაოდენობა. ზოგიერთი მათგანს საერთო მოვალეობა აქვს. დიაგრამის მიხედვით, რამდენია იმ პერსონალის რაოდენობა, რომელიც მდივანიცაა და ადმინისტრატორიც?</Question>
+      <ImageUrl>http://a.pix.ge/j/psx1q.jpg</ImageUrl>
+      <Answer1>87</Answer1>
+      <Answer2>72 </Answer2>
+      <Answer3>60</Answer3>
+      <Answer4>27</Answer4>
+      <CorrectAnswerIndex>4</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>ამ ფიგურების ასაგებად გამოიყენეს ასანთის ღერები.  პირველი ფიგურის  ასაგებად საჭირო გახდა3 ცალი  ასანთის ღერი. მეორე ფიგურის ასაგებად  გამოიყენეს 9 ცალი, ხოლო მესამე ფიგურის  ასაგებად 15 ცალი ღერი გახდა საჭირო.რამდენი ცალი ასანთის ღერი იქნება  საჭირო მეექვსე  ფიგურის  ასაგებად?</Question>
+      <ImageUrl>http://a.pix.ge/y/g95k9.jpg</ImageUrl>
+      <Answer1>21</Answer1>
+      <Answer2>27</Answer2>
+      <Answer3>33</Answer3>
+      <Answer4>39</Answer4>
+      <CorrectAnswerIndex>3</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>მოცემული რიცხვებიდან რომელი რიცხვი იყოფა 3-ზე?</Question>
+      <Answer1>99^10-1</Answer1>
+      <Answer2>10^99-1</Answer2>
+      <Answer3>55^10 * 10^55</Answer3>
+      <Answer4>3^66+1</Answer4>
+      <CorrectAnswerIndex>2</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>კალათბურთის  გუნდის 5 მოთამაშის საშუალო  სიმაღლეა 204 სმ. საშუალო სიმაღლის  მქონე მოთამაშე  შეცვალეს, რის  შემდეგ გუნდის საშუალო სიმაღლე208 სმ გახდა. რა სიმაღლისაა  გუნდის  ახალ იმოთამაშე?</Question>
+      <Answer1>210სმ </Answer1>
+      <Answer2>214სმ</Answer2>
+      <Answer3>220სმ</Answer3>
+      <Answer4>224სმ</Answer4>
+      <CorrectAnswerIndex>4</CorrectAnswerIndex>
+    </QuestionObject>
+    <QuestionObject>
+      <Question>ერთიდაიგივე  სამუშაოს  პირველი 1 დღეში  ასრულებს, მეორე - 2 დღეში, მესამე - 3 დღეში, მეოთხე - 4 დღეში.რამდენ ხანში შეასრულებენ ისინი ამ  სამუშაოს  ერთად?</Question>
+      <Answer1>12/25 დღეში</Answer1>
+      <Answer2>1/8 დღეში</Answer2>
+      <Answer3>1/2 დღეში</Answer3>
+      <Answer4>1/3 დღეში</Answer4>
+      <CorrectAnswerIndex>1</CorrectAnswerIndex>
+    </QuestionObject>
+  </Objects>
+</objs>
