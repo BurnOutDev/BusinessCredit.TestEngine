@@ -10,6 +10,8 @@ namespace BusinessCredit.TestEngine.Domain
     {
         public int AnswerID { get; set; }
 
+        public string Prefix { get; set; }
+
         public string TextContent { get; set; }
         public string ImageUrl { get; set; }
         public string AudioUrl { get; set; }

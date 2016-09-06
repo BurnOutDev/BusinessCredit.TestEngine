@@ -6,10 +6,28 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Controls="using:BusinessCredit.TestEngine.UWP.Controls"
     x:Class="BusinessCredit.TestEngine.UWP.MainPage"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot x:Name="pivotQuestions" Title="კითხვები">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Pivot x:Name="pivotQuestions" Title="კითხვები" Grid.Column="1">
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Height="0" Width="0">
+                        <TextBlock Text="{Binding}" />
+                    </StackPanel>
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
         </Pivot>
+
+        <TextBlock Tapped="LeftBtn_Tapped" Name="LeftBtn" Grid.RowSpan="3" FontSize="26"  FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"></TextBlock>
+        <TextBlock Tapped="RightBtn_Tapped" Name="RightBtn" Grid.RowSpan="3" FontSize="26"  FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2"></TextBlock>
     </Grid>
 </Page>

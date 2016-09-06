@@ -169,16 +169,16 @@ namespace BusinessCredit.TestEngine.UWP
                 var qc = new QuestionControl();
                 var v1 = ((Viewbox)((Grid)(qc.Content)).Children.ToList().First());
                 var v2 = ((Viewbox)((Grid)(qc.Content)).Children.ToList()[1]);
-                var v3 = ((Viewbox)((Grid)(qc.Content)).Children.ToList().Last());
+                var v3 = ((Viewbox)((Grid)(qc.Content)).Children.ToList()[2]);
 
-                
+
 
                 ((TextBlock)v1.Child).Text = q.Name;
 
                 switch (q.ContentType)
                 {
                     case QuestionContentType.Text:
-                        v2.Child = new TextBlock() { Width = v2.Width*0.9, TextWrapping = TextWrapping.Wrap, Text = q.TextContent};
+                        v2.Child = new TextBlock() { Width = v2.Width * 0.9, TextWrapping = TextWrapping.Wrap, Text = q.TextContent };
                         break;
                     case QuestionContentType.Picture:
                         v2.Child = new Image() { Source = new BitmapImage(new Uri(q.ImageUrl)) };
@@ -193,13 +193,15 @@ namespace BusinessCredit.TestEngine.UWP
                         break;
                 }
 
+                var c = 'A';
+
                 foreach (var answer in q.Answers)
                 {
                     UIElement el = null;
                     switch (answer.ContentType)
                     {
                         case AnswerContentType.Text:
-                            el = new Button() { Content = new TextBlock() { Width = v3.Width * 0.4, TextWrapping = TextWrapping.Wrap, Text = answer.TextContent }, Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)) };
+                            el = new Button() { Content = new TextBlock() { Width = v3.Width * 0.4, TextWrapping = TextWrapping.Wrap, Text = c + ". " + answer.TextContent }, Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), HorizontalAlignment = HorizontalAlignment.Left };
                             break;
                         case AnswerContentType.Picture:
                             el = new Button() { Content = new Image() { Source = new BitmapImage(new Uri(answer.ImageUrl)) }, Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)) };
@@ -213,9 +215,18 @@ namespace BusinessCredit.TestEngine.UWP
                         default:
                             break;
                     }
-
+                    c++;
                     //btn.Click += (sender, e) => new ContentDialog() { Content = sender };
                     ((StackPanel)((RelativePanel)v3.Child).Children[0]).Children.Add(el);
+                }
+
+                foreach (var item in ((StackPanel)((RelativePanel)v3.Child).Children[0]).Children)
+                {
+                    var max = ((StackPanel)((RelativePanel)v3.Child).Children[0]).Children.Where(x => x is Button).Max(x => ((Button)x).Width);
+                    if (item is Button)
+                    {
+                        ((Button)item).Width = max;
+                    }
                 }
 
                 pivot.Content = qc;
@@ -237,10 +248,10 @@ namespace BusinessCredit.TestEngine.UWP
                 ((TextBlock)t).TextWrapping = TextWrapping.Wrap;
             }
 
-            
 
-            var v3 = ((Viewbox)((Grid)((((Viewbox)sender).Parent))).Children.ToList().Last());
-            
+
+            var v3 = ((Viewbox)((Grid)((((Viewbox)sender).Parent))).Children.ToList()[2]);
+
             foreach (var item in ((StackPanel)((RelativePanel)v3.Child).Children[0]).Children)
             {
                 ((TextBlock)((Button)item).Content).FontSize = 22;
@@ -252,6 +263,27 @@ namespace BusinessCredit.TestEngine.UWP
         {
             var d = new MessageDialog("Pressed! " + ((Button)sender).Content);
             await d.ShowAsync();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void LeftBtn_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (pivotQuestions.SelectedIndex > 0)
+            {
+                pivotQuestions.SelectedIndex--;
+            }
+        }
+
+        private void RightBtn_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (pivotQuestions.SelectedIndex < pivotQuestions.Items.Count)
+            {
+                pivotQuestions.SelectedIndex++;
+            }
         }
     }
 }
