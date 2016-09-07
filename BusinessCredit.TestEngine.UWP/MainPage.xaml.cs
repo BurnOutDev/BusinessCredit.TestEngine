@@ -201,7 +201,7 @@ namespace BusinessCredit.TestEngine.UWP
                     switch (answer.ContentType)
                     {
                         case AnswerContentType.Text:
-                            el = new Button() { Content = new TextBlock() { Width = v3.Width * 0.4, TextWrapping = TextWrapping.Wrap, Text = c + ". " + answer.TextContent }, Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), HorizontalAlignment = HorizontalAlignment.Left };
+                            el = new Button() { Content = new TextBlock() { Width = v3.Width * 0.4, TextWrapping = TextWrapping.Wrap, Text = c + ". " + answer.TextContent }, Background = new SolidColorBrush(Color.FromArgb(140, 102, 175, 255)), Margin = new Thickness(5,5,5,5), HorizontalAlignment = HorizontalAlignment.Left, MinWidth = 400 };
                             break;
                         case AnswerContentType.Picture:
                             el = new Button() { Content = new Image() { Source = new BitmapImage(new Uri(answer.ImageUrl)) }, Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)) };
@@ -270,20 +270,16 @@ namespace BusinessCredit.TestEngine.UWP
             
         }
 
-        private void LeftBtn_Tapped(object sender, TappedRoutedEventArgs e)
+        private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
             if (pivotQuestions.SelectedIndex > 0)
-            {
                 pivotQuestions.SelectedIndex--;
-            }
         }
 
-        private void RightBtn_Tapped(object sender, TappedRoutedEventArgs e)
+        private void RightButton_Click(object sender, RoutedEventArgs e)
         {
             if (pivotQuestions.SelectedIndex < pivotQuestions.Items.Count)
-            {
                 pivotQuestions.SelectedIndex++;
-            }
         }
     }
 }

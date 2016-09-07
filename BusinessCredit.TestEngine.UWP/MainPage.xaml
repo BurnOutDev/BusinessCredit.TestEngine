@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Loaded="Page_Loaded">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="Lavender">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -17,7 +17,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Pivot x:Name="pivotQuestions" Title="კითხვები" Grid.Column="1">
+        <Pivot x:Name="pivotQuestions" Title="კითხვები" Grid.Column="1" HorizontalAlignment="Center">
             <Pivot.HeaderTemplate>
                 <DataTemplate>
                     <StackPanel Height="0" Width="0">
@@ -27,7 +27,25 @@
             </Pivot.HeaderTemplate>
         </Pivot>
 
-        <TextBlock Tapped="LeftBtn_Tapped" Name="LeftBtn" Grid.RowSpan="3" FontSize="26"  FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"></TextBlock>
-        <TextBlock Tapped="RightBtn_Tapped" Name="RightBtn" Grid.RowSpan="3" FontSize="26"  FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2"></TextBlock>
+        <Button Name="LeftButton"
+                Grid.RowSpan="3" 
+                Grid.Column="0"
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center"
+                Click="LeftButton_Click"
+                FontSize="26"  
+                FontFamily="Segoe MDL2 Assets" 
+                Content=""
+                />
+        <Button Name="RightButton"
+                Grid.RowSpan="3" 
+                Grid.Column="2"
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center"
+                Click="RightButton_Click"
+                FontSize="26" 
+                FontFamily="Segoe MDL2 Assets"
+                Content=""
+                />
     </Grid>
 </Page>
