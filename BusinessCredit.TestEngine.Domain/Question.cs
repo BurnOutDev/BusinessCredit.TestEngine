@@ -25,8 +25,6 @@ namespace BusinessCredit.TestEngine.Domain
     {
         Text,
         Picture,
-        Audio,
-        Video,
-        Html
+        Dual
     }
 }

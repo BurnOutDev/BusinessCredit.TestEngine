@@ -31,16 +31,18 @@ namespace BusinessCredit.TestEngine.UWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public long MaxSeconds { get; set; } = 10;
+        public long Ticks { get; set; }
+        public DispatcherTimer Timer { get; set; }
+        public objs AnsweredTest { get; set; }
+        public objs ExportedQuestions { get; set; }
+
         public MainPage()
         {
             InitializeComponent();
-
-            var task = Task.Run(GetFile<objs>);
-            task.Wait();
-            var tests = task.Result;
-
-            List<Question> questions = GetQuestionCollection(tests);
-
+            AnsweredTest = new objs();
+            AnsweredTest.Objects = new List<QuestionObject>();
+            #region Comments
             //var q1 = new Question() { Name = "IQ", ImageUrl = @"http://www.quickiqtest.net/questions/firstq.gif", ContentType = QuestionContentType.Picture, QuestionID = 1 };
             //q1.Answers.Add(new Answer() { AnswerID = 1, ContentType = AnswerContentType.Picture, IsCorrect = true, ImageUrl = @"http://www.quickiqtest.net/answers/firstqa.gif" });
             //q1.Answers.Add(new Answer() { AnswerID = 2, ContentType = AnswerContentType.Picture, IsCorrect = false, ImageUrl = @"http://www.quickiqtest.net/answers/firstqb.gif" });
@@ -72,15 +74,60 @@ namespace BusinessCredit.TestEngine.UWP
             //questions.Add(q2);
             //questions.Add(q3);
 
-            AddQuestions(questions);
 
             //var item = (Viewbox)((Grid)((QuestionControl)(pivotItemQ1.Content)).Content).Children.ToList().Last();
 
             //var button = new Button() { Margin = new Thickness(10), Content = "Axali" };
             //button.Click += Button_Click;
-            //item.Child = button;
+            //item.Child = button; 
+            #endregion
 
+            Timer = new DispatcherTimer() { Interval = new TimeSpan(TimeSpan.TicksPerSecond) };
+            Timer.Tick += Timer_Tick;
+        }
 
+        private void Timer_Tick(object sender, object e)
+        {
+            if (MaxSeconds < Ticks)
+                Finish();
+
+            Ticks++;
+
+            var t = TimeSpan.FromSeconds(Ticks);
+
+            if (t.Hours == 0)
+                Hour.Text = "00";
+            else
+                Hour.Text = t.Hours.ToString();
+
+            if (t.Minutes == 0)
+                Minute.Text = "00";
+            else
+                Minute.Text = t.Minutes.ToString();
+
+            if (t.Seconds == 0)
+                Seconds.Text = "00";
+            else
+                Seconds.Text = t.Seconds.ToString();
+        }
+
+        private async void Finish()
+        {
+            Timer.Stop();
+
+            int max = 0;
+            int score = 0;
+
+            foreach (var qs in AnsweredTest.Objects)
+            {
+                max++;
+                var eq = ExportedQuestions.Objects.FirstOrDefault(x => x.QID == qs.QID);
+                if (eq.CorrectAnswerIndex == qs.CorrectAnswerIndex)
+                    score++;
+            }
+
+            var m = new MessageDialog($"{score} out of {max} SHOOTING FIREWORKS !!!");
+            await m.ShowAsync();
         }
 
         private List<Question> GetQuestionCollection(objs tests)
@@ -90,10 +137,31 @@ namespace BusinessCredit.TestEngine.UWP
 
             foreach (var item in tests.Objects)
             {
+                #region AnsweredTest
+                AnsweredTest.Objects.Add(new QuestionObject()
+                {
+                    QID = item.QID,
+                    Answer1 = item.Answer1,
+                    Answer2 = item.Answer2,
+                    Answer3 = item.Answer3,
+                    Answer4 = item.Answer4,
+                    ImageUrl = item.ImageUrl,
+                    Question = item.Question,
+                    CorrectAnswerIndex = -1
+                });
+                #endregion
+
                 i++;
+
                 var q = new Question();
+                q.QuestionID = item.QID;
                 q.Name = i.ToString();
                 q.ContentType = string.IsNullOrWhiteSpace(item.ImageUrl) ? QuestionContentType.Text : QuestionContentType.Picture;
+
+                if (!string.IsNullOrWhiteSpace(item.ImageUrl) && !string.IsNullOrWhiteSpace(item.Question))
+                    q.ContentType = QuestionContentType.Dual;
+
+                //q.ContentType = QuestionContentType.Text;
 
                 switch (q.ContentType)
                 {
@@ -103,11 +171,9 @@ namespace BusinessCredit.TestEngine.UWP
                     case QuestionContentType.Picture:
                         q.ImageUrl = item.ImageUrl;
                         break;
-                    case QuestionContentType.Audio:
-                        break;
-                    case QuestionContentType.Video:
-                        break;
-                    case QuestionContentType.Html:
+                    case QuestionContentType.Dual:
+                        q.TextContent = item.Question;
+                        q.ImageUrl = item.ImageUrl;
                         break;
                     default:
                         break;
@@ -173,7 +239,7 @@ namespace BusinessCredit.TestEngine.UWP
 
 
 
-                ((TextBlock)v1.Child).Text = q.Name;
+                ((TextBlock)v1.Child).Text = $"{q.Name}/{questions.Count}";
 
                 switch (q.ContentType)
                 {
@@ -183,11 +249,23 @@ namespace BusinessCredit.TestEngine.UWP
                     case QuestionContentType.Picture:
                         v2.Child = new Image() { Source = new BitmapImage(new Uri(q.ImageUrl)) };
                         break;
-                    case QuestionContentType.Audio:
-                        break;
-                    case QuestionContentType.Video:
-                        break;
-                    case QuestionContentType.Html:
+                    case QuestionContentType.Dual:
+
+                        Grid g = new Grid();
+
+                        g.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(5, GridUnitType.Star) });
+                        g.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(5, GridUnitType.Star) });
+
+                        var txt = new TextBlock() { Width = v2.Width * 0.9, TextWrapping = TextWrapping.Wrap, Text = q.TextContent };
+                        Grid.SetColumn(txt, 1);
+
+                        var pic = new Image() { Source = new BitmapImage(new Uri(q.ImageUrl)) };
+                        Grid.SetColumn(pic, 0);
+
+                        g.Children.Add(pic);
+                        g.Children.Add(txt);
+
+                        v2.Child = g;
                         break;
                     default:
                         break;
@@ -201,10 +279,23 @@ namespace BusinessCredit.TestEngine.UWP
                     switch (answer.ContentType)
                     {
                         case AnswerContentType.Text:
-                            el = new Button() { Content = new TextBlock() { Width = v3.Width * 0.4, TextWrapping = TextWrapping.Wrap, Text = c + ". " + answer.TextContent }, Background = new SolidColorBrush(Color.FromArgb(140, 102, 175, 255)), Margin = new Thickness(5,5,5,5), HorizontalAlignment = HorizontalAlignment.Left, MinWidth = 400 };
+                            var cb = new CheckBox()
+                            {
+                                HorizontalAlignment = HorizontalAlignment.Left,
+                                VerticalContentAlignment = VerticalAlignment.Top,
+                                Tag = q.QuestionID
+                            };
+
+                            cb.Content = answer.TextContent;
+
+                            cb.Checked += AnswerClicked;
+
+                            el = cb;
                             break;
                         case AnswerContentType.Picture:
                             el = new Button() { Content = new Image() { Source = new BitmapImage(new Uri(answer.ImageUrl)) }, Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)) };
+                            var b = (Button)el;
+                            b.Click += AnswerClickedButton;
                             break;
                         case AnswerContentType.Audio:
                             break;
@@ -222,11 +313,11 @@ namespace BusinessCredit.TestEngine.UWP
 
                 foreach (var item in ((StackPanel)((RelativePanel)v3.Child).Children[0]).Children)
                 {
-                    var max = ((StackPanel)((RelativePanel)v3.Child).Children[0]).Children.Where(x => x is Button).Max(x => ((Button)x).Width);
-                    if (item is Button)
-                    {
-                        ((Button)item).Width = max;
-                    }
+                    //var max = ((StackPanel)((RelativePanel)v3.Child).Children[0]).Children.Where(x => x is StackPanel).Max(x => ((StackPanel)x).Width);
+                    //if (item is StackPanel)
+                    //{
+                    //    ((StackPanel)item).Width = max;
+                    //}
                 }
 
                 pivot.Content = qc;
@@ -235,6 +326,28 @@ namespace BusinessCredit.TestEngine.UWP
 
                 v2.SizeChanged += V2_SizeChanged;
             }
+        }
+
+        private void AnswerClickedButton(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AnswerClicked(object sender, RoutedEventArgs e)
+        {
+            //var m = new MessageDialog($"Clicked: Q = {((CheckBox)e.OriginalSource).Tag} A = {((CheckBox)e.OriginalSource).Content}");
+            //await m.ShowAsync();
+
+            var aobj = AnsweredTest.Objects.FirstOrDefault(x => x.QID == ((CheckBox)e.OriginalSource).Tag.ToString());
+
+            if ((string)((CheckBox)e.OriginalSource).Content == aobj.Answer1)
+                aobj.CorrectAnswerIndex = 1;
+            else if ((string)((CheckBox)e.OriginalSource).Content == aobj.Answer2)
+                aobj.CorrectAnswerIndex = 2;
+            else if ((string)((CheckBox)e.OriginalSource).Content == aobj.Answer3)
+                aobj.CorrectAnswerIndex = 3;
+            else if ((string)((CheckBox)e.OriginalSource).Content == aobj.Answer4)
+                aobj.CorrectAnswerIndex = 4;
         }
 
         private void V2_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -248,15 +361,24 @@ namespace BusinessCredit.TestEngine.UWP
                 ((TextBlock)t).TextWrapping = TextWrapping.Wrap;
             }
 
+            if (t is StackPanel)
+            {
+                var s = (StackPanel)t;
 
+                var txt = (TextBlock)s.Children.Where(x => x is TextBlock).FirstOrDefault();
+
+                txt.Width = e.NewSize.Width;
+                txt.FontSize = 22;
+                txt.TextWrapping = TextWrapping.Wrap;
+            }
 
             var v3 = ((Viewbox)((Grid)((((Viewbox)sender).Parent))).Children.ToList()[2]);
 
-            foreach (var item in ((StackPanel)((RelativePanel)v3.Child).Children[0]).Children)
-            {
-                ((TextBlock)((Button)item).Content).FontSize = 22;
-                ((TextBlock)((Button)item).Content).TextWrapping = TextWrapping.Wrap;
-            }
+            //foreach (var item in ((StackPanel)((RelativePanel)v3.Child).Children[0]).Children)
+            //{
+            //    ((TextBlock)((CheckBox)((StackPanel)item).Children[0]).Content).FontSize = 22;
+            //    ((TextBlock)((CheckBox)((StackPanel)item).Children[0]).Content).TextWrapping = TextWrapping.Wrap;
+            //}
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -267,7 +389,15 @@ namespace BusinessCredit.TestEngine.UWP
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
+            var task = Task.Run(GetFile<objs>);
+            task.Wait();
+            var tests = task.Result;
+
+            ExportedQuestions = tests;
+            List<Question> questions = GetQuestionCollection(tests);
+
+            AddQuestions(questions);
         }
 
         private void LeftButton_Click(object sender, RoutedEventArgs e)
@@ -278,8 +408,22 @@ namespace BusinessCredit.TestEngine.UWP
 
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
-            if (pivotQuestions.SelectedIndex < pivotQuestions.Items.Count)
+            if (pivotQuestions.SelectedIndex < pivotQuestions.Items.Count - 1)
                 pivotQuestions.SelectedIndex++;
         }
+
+        private void StartConversation_Click(object sender, RoutedEventArgs e)
+        {
+            Timer.Start();
+        }
+
+        //private void Button_Click_1(object sender, RoutedEventArgs e)
+        //{
+        //    var b = (Button)sender;
+
+        //    b.Visibility = Visibility.Collapsed;
+
+        //    Timer.Start();
+        //}
     }
 }

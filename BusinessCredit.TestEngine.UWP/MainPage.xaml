@@ -9,6 +9,23 @@
     mc:Ignorable="d"
     Loaded="Page_Loaded">
 
+    <Page.TopAppBar>
+        <AppBar Visibility="Visible" ClosedDisplayMode="Compact">
+            <AppBar.Background>
+                <SolidColorBrush Color="{StaticResource SystemAccentColor}"/>
+            </AppBar.Background>
+
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                <TextBlock Foreground="White" FontSize="20" Name="Hour">00</TextBlock>
+                <TextBlock Foreground="White" FontSize="20">:</TextBlock>
+                <TextBlock Foreground="White" FontSize="20" Name="Minute">00</TextBlock>
+                <TextBlock Foreground="White" FontSize="20">:</TextBlock>
+                <TextBlock Foreground="White" FontSize="20" Name="Seconds">00</TextBlock>
+                <AppBarButton Foreground="White" FontSize="20" Click="StartConversation_Click" Name="StartConversation" Icon="GoToStart" Margin="10,0,0,0" />
+            </StackPanel>
+        </AppBar>
+    </Page.TopAppBar>
+
     <Grid Background="Lavender">
 
         <Grid.ColumnDefinitions>
@@ -17,14 +34,16 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Pivot x:Name="pivotQuestions" Title="კითხვები" Grid.Column="1" HorizontalAlignment="Center">
-            <Pivot.HeaderTemplate>
+
+
+        <Pivot x:Name="pivotQuestions" Title="კითხვები" Grid.Column="1" HorizontalAlignment="Center" Padding="0">
+            <!--<Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <StackPanel Height="0" Width="0">
+                    <StackPanel Height="20" Width="20">
                         <TextBlock Text="{Binding}" />
                     </StackPanel>
                 </DataTemplate>
-            </Pivot.HeaderTemplate>
+            </Pivot.HeaderTemplate>-->
         </Pivot>
 
         <Button Name="LeftButton"

@@ -13,6 +13,7 @@ namespace BusinessCredit.TestEngine.UWP.Models
 
     public class QuestionObject
     {
+        public string QID { get; set; }
         public string Question { get; set; }
 
         public string ImageUrl { get; set; }
